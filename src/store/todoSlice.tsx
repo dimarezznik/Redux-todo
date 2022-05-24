@@ -7,7 +7,7 @@ export interface ID {
 export interface TodoType {
   id: number;
   text: string;
-  check: boolean;
+  isDone: boolean;
 }
 
 export interface TodosType {
@@ -28,29 +28,28 @@ const todoSlice = createSlice({
       state.todos.push({
         id: Date.now(),
         text: action.payload,
-        check: false,
+        isDone: false,
       });
     },
     markTask(state: TodosType, action: { payload: ID }): void {
-      const atList = findList(state, action);
-
-      if (!atList) return;
-      atList.check = !atList.check;
+      const item = findList(state, action);
+      if (!item) return;
+      item.isDone = !item.isDone;
     },
     deleteTodo(state: TodosType, action): void {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     markTodos(state: TodosType): void {
-      state.todos.forEach((todo) => (todo.check = true));
+      state.todos.forEach((todo) => (todo.isDone = true));
     },
     deleteMarkTodo(state: TodosType): void {
-      state.todos = state.todos.filter((todo) => todo.check !== true);
+      state.todos = state.todos.filter((todo) => !todo.isDone);
     },
     todoTextUpdate(state: any, action): void {
-      const atList = findList(state, action);
+      const item = findList(state, action);
 
-      if (!atList) return;
-      atList.text = action.payload.text;
+      if (!item) return;
+      item.text = action.payload.text;
     },
   },
 });

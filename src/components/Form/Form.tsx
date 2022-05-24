@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo, markTodos, deleteMarkTodo } from "../../store/todoSlice";
-const Form = () => {
-  const [text, setText] = useState("");
+const Form = React.memo(() => {
+  const [text, addText] = useState("");
   const dispatch = useDispatch();
 
-  const setList = () => {
+  const addList = () => {
     if (text.trim() !== "") {
       dispatch(addTodo(text));
-      setText("");
+      addText("");
     }
   };
 
@@ -18,15 +18,15 @@ const Form = () => {
         className="inp_form"
         value={text}
         type="text"
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => addText(e.target.value)}
       />
-      <button onClick={() => setList()}>Add todo</button>
+      <button onClick={() => addList()}>Add todo</button>
       <button onClick={() => dispatch(markTodos())}>Mark all todo</button>
       <button onClick={() => dispatch(deleteMarkTodo())}>
         Delete mark todo
       </button>
     </label>
   );
-};
+});
 
 export default Form;

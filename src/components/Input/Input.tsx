@@ -7,7 +7,7 @@ interface IpnType {
   todo: TodoType;
 }
 
-const Input: FC<IpnType> = ({ todo }) => {
+const Input: FC<IpnType> = React.memo(({ todo }) => {
   const dispatch = useDispatch();
 
   const textUpdate = useCallback(
@@ -25,6 +25,6 @@ const Input: FC<IpnType> = ({ todo }) => {
       onChange={(e) => textUpdate(e.target.value, todo.id)}
     />
   );
-};
+});
 
 export default Input;
