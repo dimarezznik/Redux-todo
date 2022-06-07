@@ -12,6 +12,14 @@ const Form = React.memo(() => {
     }
   };
 
+  const isDoneTodo = () => {
+      dispatch(markTodos())
+  }
+
+  const removeIsDoneTodo = () => {
+      dispatch(deleteMarkTodo())
+  }
+
   return (
     <label>
       <input
@@ -20,9 +28,9 @@ const Form = React.memo(() => {
         type="text"
         onChange={(e) => addText(e.target.value)}
       />
-      <button onClick={() => addList()}>Add todo</button>
-      <button onClick={() => dispatch(markTodos())}>Mark all todo</button>
-      <button onClick={() => dispatch(deleteMarkTodo())}>
+      <button onClick={addList}>Add todo</button>
+      <button onClick={isDoneTodo}>Mark all todo</button>
+      <button onClick={removeIsDoneTodo}>
         Delete mark todo
       </button>
     </label>

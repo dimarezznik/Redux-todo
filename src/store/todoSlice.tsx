@@ -45,9 +45,8 @@ const todoSlice = createSlice({
     deleteMarkTodo(state: TodosType): void {
       state.todos = state.todos.filter((todo) => !todo.isDone);
     },
-    todoTextUpdate(state: any, action): void {
+    todoTextUpdate(state: TodosType, action): void {
       const item = findList(state, action);
-
       if (!item) return;
       item.text = action.payload.text;
     },
