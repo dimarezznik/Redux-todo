@@ -11,8 +11,8 @@ const Input: FC<IpnType> = ({ todo }) => {
   const dispatch = useDispatch();
 
   const textUpdate = useCallback(
-    (e: string, id: number) => {
-      dispatch(todoTextUpdate({ text: e, id: id }));
+    (newText: string, id: number) => {
+      dispatch(todoTextUpdate({ text: newText, id: id }));
     },
     [dispatch]
   );
